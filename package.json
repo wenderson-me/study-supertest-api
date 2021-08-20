@@ -1,12 +1,11 @@
 {
   "name": "study-supertest-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Estudos de automação com supertest",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
-  "keywords": [],
   "author": {
     "name": "Wenderson Monteiro Da Silva",
     "email": "wendrson22@gmail.com"
