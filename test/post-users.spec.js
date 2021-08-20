@@ -5,7 +5,7 @@ const request = supertest('http://localhost:3000')
 
 const rotaUsuarios = '/usuarios'
 
-describe.only('Validar verbo POST no endpoint' + rotaUsuarios, () => {
+describe('Validar verbo POST no endpoint' + rotaUsuarios, () => {
   it('Cadastro com sucesso de novo usuário', async () => {
     const { body } = await request.post(rotaUsuarios)
       .send(
@@ -20,5 +20,9 @@ describe.only('Validar verbo POST no endpoint' + rotaUsuarios, () => {
       "message": "Cadastro realizado com sucesso",
       _id: body._id
     })
+  });
+
+  it('', async () => {
+
   });
 })
