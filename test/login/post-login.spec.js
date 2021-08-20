@@ -8,7 +8,7 @@ const rotaLogin = '/login'
 
 describe.only('validar autenticação do usuário', () => {
 
-  it('Usuario com dados validos fazer login com sucesso', async () => {
+  it.only('Usuario com dados validos fazer login com sucesso', async () => {
 
     const { body } = await request.post(rotaLogin).send(
       {
