@@ -11,5 +11,11 @@
     "name": "Wenderson Monteiro Da Silva",
     "email": "wendrson22@gmail.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "faker": "^5.5.3",
+    "mocha": "^9.1.0",
+    "supertest": "^6.1.6"
+  }
 }
