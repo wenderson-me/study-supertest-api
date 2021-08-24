@@ -7,7 +7,7 @@ const request = supertest('http://localhost:3000')
 const rotaUsuarios = '/usuarios'
 
 describe('Validar verbo POST no endpoint' + rotaUsuarios, () => {
-  it.only('Cadastro com sucesso de novo usuário', async () => {
+  it('Cadastro com sucesso de novo usuário', async () => {
     const { body } = await request.post(rotaUsuarios)
       .send(
         {
@@ -23,7 +23,7 @@ describe('Validar verbo POST no endpoint' + rotaUsuarios, () => {
     })
   });
 
-  it.only('Impedir cadastro de usuário com dados insuficientes', async () => {
+  it('Impedir cadastro de usuário com dados insuficientes', async () => {
     const { body } = await request.post(rotaUsuarios)
       .send(
         {
@@ -40,7 +40,7 @@ describe('Validar verbo POST no endpoint' + rotaUsuarios, () => {
     })
   })
 
-  it.only('Impedir cadastro de um usuário com email já existente', async () => {
+  it('Impedir cadastro de um usuário com email já existente', async () => {
 
     const user = {
       nome: `${faker.name.firstName()} ${faker.name.lastName()}`,

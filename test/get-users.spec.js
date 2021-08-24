@@ -10,12 +10,12 @@ describe('Validar get no endpoint' + rotaUsuarios, () => {
   it('Validar retorno com sucesso ao utilizar query string', async () => {
 
     const usuario = {
-
       nome: `${faker.name.firstName()} ${faker.name.lastName()}`,
       email: faker.internet.email(),
       password: faker.internet.password(),
-      administrador: faker.datatype.boolean()
+      administrador: `${faker.datatype.boolean()}`
     }
+    console.log(usuario)
     const { body: bodyUsuario } = await request.post(rotaUsuarios).send(usuario).expect(201)
 
     const { body } = await request.get(rotaUsuarios).query({ _id: bodyUsuario._id }).expect(200)
