@@ -1,5 +1,6 @@
 const supertest = require('supertest');
 const chai = require('chai');
+const faker = require('faker/locale/pt_BR')
 
 const request = supertest('http://localhost:3000')
 
@@ -9,10 +10,11 @@ describe('Validar get no endpoint' + rotaUsuarios, () => {
   it('Validar retorno com sucesso ao utilizar query string', async () => {
 
     const usuario = {
-      nome: 'rose',
-      email: 'rose@gmail.com',
-      password: 'blackpink',
-      administrador: 'false'
+
+      nome: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      administrador: faker.datatype.boolean()
     }
     const { body: bodyUsuario } = await request.post(rotaUsuarios).send(usuario).expect(201)
 

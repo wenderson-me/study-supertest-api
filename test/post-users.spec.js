@@ -1,20 +1,20 @@
 const supertest = require('supertest');
 const chai = require('chai');
-const faker = require('faker');
+const faker = require('faker/locale/pt_BR');
 
 const request = supertest('http://localhost:3000')
 
 const rotaUsuarios = '/usuarios'
 
 describe('Validar verbo POST no endpoint' + rotaUsuarios, () => {
-  it('Cadastro com sucesso de novo usuário', async () => {
+  it.only('Cadastro com sucesso de novo usuário', async () => {
     const { body } = await request.post(rotaUsuarios)
       .send(
         {
-          nome: "Wendy",
-          email: "wendy@qa.com",
-          password: "teste",
-          administrador: "true"
+          nome: `${faker.name.firstName()} ${faker.name.lastName()}`,
+          email: faker.internet.email(),
+          password: faker.internet.password(),
+          administrador: `${faker.datatype.boolean()}`
         }
       ).expect(201)
     chai.assert.deepEqual(body, {
@@ -23,7 +23,7 @@ describe('Validar verbo POST no endpoint' + rotaUsuarios, () => {
     })
   });
 
-  it('Cadastro de um novo usuário com dados insuficientes', async () => {
+  it.only('Impedir cadastro de usuário com dados insuficientes', async () => {
     const { body } = await request.post(rotaUsuarios)
       .send(
         {
@@ -40,13 +40,13 @@ describe('Validar verbo POST no endpoint' + rotaUsuarios, () => {
     })
   })
 
-  it.only('Cadastro de um usuário com email já existente', async () => {
+  it.only('Impedir cadastro de um usuário com email já existente', async () => {
 
     const user = {
-      nome: "kim lip",
-      email: "kimlip@gmail.com",
-      password: "kimlip12343",
-      administrador: "true"
+      nome: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      administrador: `${faker.datatype.boolean()}`
     }
 
     const { body: bodyUser } = await request.post(rotaUsuarios).send(user).expect(201)
