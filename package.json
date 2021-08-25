@@ -4,7 +4,7 @@
   "description": "Estudos de automação com supertest",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "cross-env AMBIENTE='local' mocha",
     "test:prod": "cross-env AMBIENTE='producao' mocha"
   },
   "author": {
