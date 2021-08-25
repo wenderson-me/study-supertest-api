@@ -27,4 +27,15 @@ describe('Validar verbo POST no endpoint' + rotaProdutos, () => {
       }
     )
   })
+
+  it.only('Cadastrar um produto com token ausente', async () => {
+
+    const res = await request.post(rotaProdutos).send('')
+      .expect(401)
+    chai.assert.deepEqual(res.body,
+      {
+        "message": "Token de acesso ausente, inválido, expirado ou usuário do token não existe mais"
+      }
+    )
+  });
 })
