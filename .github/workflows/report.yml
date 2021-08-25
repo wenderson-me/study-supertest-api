@@ -12,17 +12,15 @@ jobs:
   teste-de-api-com-serverest:
     runs-on: ubuntu-18.04
 
-    steps:
-      - name: Checkout do repositório
-        uses: actions/checkout@v2
-      - name: Setup do Node.js
-        uses: actions/setup-node@v2.1.1
-      - name: Instalar as dependências do projeto
-        run: npm ci
-      - name: Executar o ServeRest localmente com npm
-        run: npx serverest@latest
-      - name: Executar os testes de API
-        run: npm t
+   steps:
+    - name: Checkout do repositório
+      uses: actions/checkout@v2
+    - name: Setup do Node.js
+      uses: actions/setup-node@v2.1.1
+    - name: Instalar as dependências do projeto
+      run: npm ci
+    - name: Executar os testes de API
+      run: npm run test:prod
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
