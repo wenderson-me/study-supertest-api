@@ -38,4 +38,29 @@ describe('Validar verbo POST no endpoint' + rotaProdutos, () => {
       }
     )
   });
+
+  it.only('Cadastrar um produto já existente', async () => {
+    const { body: bodyLogin } = await request.post('/login')
+      .send(
+        {
+          email: "fulano@qa.com",
+          password: "teste"
+        }
+      ).expect(200)
+    console.log(bodyLogin)
+    const res = await request.post(rotaProdutos)
+      .send({
+        nome: "Logitech MX Vertical",
+        preco: 470,
+        descricao: "Mouse",
+        quantidade: 381
+      })
+      .set('authorization', bodyLogin.authorization).expect(400)
+    chai.assert.deepEqual(res.body,
+      {
+        "message": "Já existe produto com esse nome"
+      }
+    )
+  });
+
 })
