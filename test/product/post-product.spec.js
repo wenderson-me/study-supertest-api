@@ -1,13 +1,10 @@
-const supertest = require('supertest');
 const chai = require('chai');
 const faker = require('faker/locale/pt_BR');
-
-const request = supertest('http://localhost:3000')
 
 const rotaProdutos = '/produtos'
 
 describe('Validar verbo POST no endpoint' + rotaProdutos, () => {
-  it.only('Cadastro com sucesso de novo produto', async () => {
+  it('Cadastro com sucesso de novo produto', async () => {
     const { body: bodyLogin } = await request.post('/login')
       .send(
         {
