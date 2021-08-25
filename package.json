@@ -4,7 +4,8 @@
   "description": "Estudos de automação com supertest",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+     "test:prod": "cross-env AMBIENTE='producao' mocha"
   },
   "author": {
     "name": "Wenderson Monteiro Da Silva",
