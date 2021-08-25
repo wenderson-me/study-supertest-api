@@ -11,8 +11,8 @@ on:
 jobs:
   teste-de-api-com-serverest:
     runs-on: ubuntu-18.04
-
-   steps:
+    
+    steps:
     - name: Checkout do repositório
       uses: actions/checkout@v2
     - name: Setup do Node.js
@@ -21,7 +21,7 @@ jobs:
       run: npm ci
     - name: Executar os testes de API
       run: npm run test:prod
-      - name: Deploy
+       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
