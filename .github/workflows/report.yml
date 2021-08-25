@@ -19,8 +19,8 @@ jobs:
         uses: actions/setup-node@v2.1.1
       - name: Instalar as dependências do projeto
         run: npm ci
-      - name: Executar o ServeRest localmente com Docker
-        run: docker run -d -p 3000:3000 paulogoncalvesbh/serverest:latest
+      - name: Executar o ServeRest localmente com npm
+        run: npx serverest@latest
       - name: Executar os testes de API
         run: npm t
       - name: Deploy
