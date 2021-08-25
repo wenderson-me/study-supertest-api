@@ -1,50 +1,33 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: CI
+name: Testes de API
 
 on:
-  push:
-    branches: [ main ]
+  push: 
+   branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  build:
+  teste-de-api-com-serverest:
 
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    
-    - uses: actions/checkout@v2
-    
-    - name: Install node_modules
-      run: |
-          npm i
-    
-    - name: Initial Serverest
-      run: |
-          npx serverest@latest
-          continue-on-error: false
-    
-    - name: Run test
-      run: |
-          npm test
-
+    - name: Checkout do repositório
+      uses: actions/checkout@v2
+    - name: Setup do Node.js
+      uses: actions/setup-node@v2.1.1
+    - name: Instalar as dependências do projeto
+      run: npm ci
+    - name: Executar o ServeRest localmente
+      run: npx serverest@latest
+    - name: Executar testes
+      run: npm test
     - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: main
-          FOLDER: report
+        BRANCH: gh-pages
+        FOLDER: report
