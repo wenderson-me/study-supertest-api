@@ -10,23 +10,22 @@ on:
 
 jobs:
   teste-de-api-com-serverest:
-
     runs-on: ubuntu-18.04
 
     steps:
-    - name: Checkout do repositório
-      uses: actions/checkout@v2
-    - name: Setup do Node.js
-      uses: actions/setup-node@v2.1.1
-    - name: Instalar as dependências do projeto
-      run: npm ci
-    - name: Executar o ServeRest localmente com Docker
-      run: docker run -d -p 3000:3000 paulogoncalvesbh/serverest:latest
-    - name: Executar os testes de API
-      run: npm test
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: main
-        FOLDER: report
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+      - name: Setup do Node.js
+        uses: actions/setup-node@v2.1.1
+      - name: Instalar as dependências do projeto
+        run: npm ci
+      - name: Executar o ServeRest localmente com Docker
+        run: docker run -d -p 3000:3000 paulogoncalvesbh/serverest:latest
+      - name: Executar os testes de API
+        run: npm t
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: report
