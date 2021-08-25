@@ -7,7 +7,7 @@ const request = supertest('http://localhost:3000')
 const rotaLogin = '/login'
 const rotaUsuario = '/usuarios'
 
-describe.only('validar autenticação do usuário', () => {
+describe('validar autenticação do usuário', () => {
 
   it('Usuario com dados validos deve fazer login com sucesso', async () => {
 
