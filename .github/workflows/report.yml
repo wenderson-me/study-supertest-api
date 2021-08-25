@@ -4,10 +4,9 @@
 name: Testes de API
 
 on:
-  push: 
-   branches: [ main ]
+  push:
   pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   teste-de-api-com-serverest:
@@ -21,9 +20,9 @@ jobs:
       uses: actions/setup-node@v2.1.1
     - name: Instalar as dependências do projeto
       run: npm ci
-    - name: Executar o ServeRest localmente
-      run: npx serverest@latest
-    - name: Executar testes
+    - name: Executar o ServeRest localmente com Docker
+      run: docker run -d -p 3000:3000 paulogoncalvesbh/serverest:latest
+    - name: Executar os testes de API
       run: npm test
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@3.7.1
