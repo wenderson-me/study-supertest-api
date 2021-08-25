@@ -21,7 +21,7 @@ jobs:
     - name: Instalar as dependências do projeto
       run: npm ci
     - name: Executar o ServeRest localmente com Docker
-      run: docker run -d -p 3000:3000 paulogoncalvesbh/serverest:latest
+      run: docker run -d -p 3000:3000 wendy/serverest:latest
     - name: Executar os testes de API
       run: npm test
     - name: Deploy
