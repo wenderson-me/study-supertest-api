@@ -5,9 +5,7 @@ name: Testes de API
 
 on:
   push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
   teste-de-api-com-serverest:
